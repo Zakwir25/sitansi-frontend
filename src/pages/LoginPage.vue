@@ -1,38 +1,44 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-card style="width: 400px">
-      <q-card-section class="bg-primary text-white">
-        <div class="text-h6">Login Aplikasi</div>
+  <q-page class="flex flex-center" style="background-color: #007bff;">
+    <q-card style="width: 350px; padding: 20px;">
+
+      <q-card-section class="text-center q-pb-md">
+        <div class="text-h5 text-primary text-weight-bold">
+          Medisin         </div>
       </q-card-section>
 
-      <q-card-section>
-        <q-form @submit="handleLogin" class="q-gutter-md">
+      <q-card-section class="q-gutter-md">
+        <q-form @submit="login" class="q-gutter-md">
+
           <q-input
-            filled
-            v-model="email"
-            label="Email/Username *"
-            type="email"
-            :rules="[val => !!val || 'Email wajib diisi']"
+            v-model="username"
+            placeholder="Username"
+            bg-color="grey-2"
+            dense
+            outlined
+            hide-bottom-space
+            input-class="q-px-sm"
           />
 
           <q-input
-            filled
             v-model="password"
-            label="Password *"
-            :type="isPwd ? 'password' : 'text'"
-            :rules="[val => !!val || 'Password wajib diisi']"
-          >
-            <template v-slot:append>
-              <q-icon
-                :name="isPwd ? 'visibility_off' : 'visibility'"
-                class="cursor-pointer"
-                @click="isPwd = !isPwd"
-              />
-            </template>
-          </q-input>
+            placeholder="Password"
+            type="password"
+            bg-color="grey-2"
+            dense
+            outlined
+            hide-bottom-space
+            input-class="q-px-sm"
+          />
 
           <div>
-            <q-btn label="Login" type="submit" color="primary" class="full-width"/>
+            <q-btn
+              label="LOGIN"
+              type="submit"
+              color="primary"
+              class="full-width text-white"
+              size="lg"
+            />
           </div>
         </q-form>
       </q-card-section>
@@ -40,58 +46,15 @@
   </q-page>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import { useQuasar } from 'quasar';
+// ... import lain untuk logika login
 
-export default {
-  setup () {
-    const store = useStore();
-    const router = useRouter();
-    const $q = useQuasar();
+const username = ref('');
+const password = ref('');
 
-    const email = ref('');
-    const password = ref('');
-    const isPwd = ref(true);
-
-    const handleLogin = async () => {
-      try {
-        // action login di Vuex
-        await store.dispatch('auth/login', {
-          email: email.value,
-          password: password.value
-        });
-
-
-        $q.notify({
-          type: 'positive',
-          message: 'Login Berhasil!'
-        });
-
-
-        router.push('/');
-
-      } catch (error) {
-        let message = 'Login Gagal. Silakan coba lagi.';
-        if (error.response && error.response.data && error.response.data.message) {
-             message = error.response.data.message;
-        }
-
-        $q.notify({
-          type: 'negative',
-          message: message
-        });
-      }
-    };
-
-    return {
-      email,
-      password,
-      isPwd,
-      handleLogin
-    }
-  }
-}
+const login = () => {
+  // Logika login
+  console.log('Attempting login with:', username.value, password.value);
+};
 </script>
