@@ -3,8 +3,11 @@
     <q-card style="width: 350px; padding: 20px;">
 
       <q-card-section class="text-center q-pb-md">
-        <div class="text-h5 text-primary text-weight-bold">
-          Medisin         </div>
+        <img
+          src="/logo-medisin.png"
+          alt="Medisin Logo"
+          style="width: 150px; height: auto;"
+        />
       </q-card-section>
 
       <q-card-section class="q-gutter-md">
@@ -19,7 +22,6 @@
             hide-bottom-space
             input-class="q-px-sm"
           />
-
           <q-input
             v-model="password"
             placeholder="Password"

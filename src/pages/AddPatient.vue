@@ -1,6 +1,15 @@
 <template>
-  <q-dialog :model-value="modelValue" @update:model-value="$emit('update:modelValue', $event)">
+<q-dialog :model-value="modelValue" @update:model-value="$emit('update:modelValue', $event)">
     <q-card style="width: 500px">
+
+      <q-card-section class="text-center q-pb-none">
+        <img
+            src="/logo-medisin.png"
+            alt="Medisin Logo"
+            style="width: 100px; height: auto;"
+        />
+      </q-card-section>
+
       <q-card-section class="row items-center q-pb-none">
         <div class="text-h6 text-weight-bold">TAMBAH PASIEN</div>
         <q-space />

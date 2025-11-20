@@ -1,46 +1,20 @@
 <template>
   <q-page class="q-pa-md">
     <q-card flat bordered>
+
       <q-card-section class="q-pa-none">
-        <div class="bg-primary text-white text-h6 q-pa-sm text-center">
-            <div class="text-h6 text-white text-weight-bold">
-                Medisin
-            </div>
+        <div class="bg-primary text-white text-h6 q-py-sm text-center">
+            <img
+                src="/logo-medisin.png"
+                alt="Medisin Logo"
+                style="width: 120px; height: auto; margin: 5px 0;"
+            />
         </div>
 
         <div class="q-pa-md row items-center q-gutter-md">
-          <q-btn
-            label="TAMBAH PASIEN"
-            color="primary"
-            @click="showTambahPasien = true"
-          />
-
-          <q-btn
-            label="BUAT KUNJUNGAN"
-            style="background-color: #4CAF50;"
-            text-color="white"
-            @click="showBuatKunjungan = true"
-          />
         </div>
 
-        <q-table
-          :rows="rows"
-          :columns="columns"
-          row-key="no"
-          flat
-          bordered
-          separator="cell"
-          hide-bottom
-        >
-          <template v-slot:header="props">
-            <q-tr :props="props" class="bg-grey-3">
-              <q-th v-for="col in props.cols" :key="col.name" :props="props" class="text-weight-bold">
-                {{ col.label }}
-              </q-th>
-            </q-tr>
-          </template>
-        </q-table>
-      </q-card-section>
+        </q-card-section>
     </q-card>
 
     <TambahPasienModal v-model="showTambahPasien" />
