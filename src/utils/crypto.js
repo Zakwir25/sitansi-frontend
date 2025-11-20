@@ -26,9 +26,20 @@ export function encryptPayload(data) {
         iv: iv
     });
 
+    const encryptedJson = JSON.stringify({
+        iv: CryptoJS.enc.Base64.stringify(iv),
+        value: encrypted.ciphertext.toString(CryptoJS.enc.Base64),
+
+
+        mac: CryptoJS.HmacSHA256(
+            CryptoJS.enc.Base64.parse(CryptoJS.enc.Base64.stringify(iv) + encrypted.ciphertext.toString(CryptoJS.enc.Base64)),
+            key // Kunci MAC sama dengan kunci enkripsi (default Laravel)
+        ).toString(),
+    });
+
 
     const encryptedString = encrypted.toString(); // Output format Base64
 
-    return encryptedString;
+    return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encryptedJson));
 }
 
